@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Resend } from 'resend';
 import { AcquisitionAnnouncementEmail } from '../emails/acquisition-announcement';
 
@@ -31,7 +32,7 @@ export async function sendAcquisitionEmail({
     const { data, error } = await resend.emails.send({
       from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
       to: Array.isArray(to) ? to : [to],
-      subject: `Important Update: ${companyName} Acquisition Announcement`,
+      subject: 'An Important Update About dex',
       react: AcquisitionAnnouncementEmail({
         customerName,
         companyName,
@@ -59,15 +60,6 @@ export async function sendAcquisitionEmail({
 
 // Example usage - uncomment and modify to send test email
 // sendAcquisitionEmail({
-//   to: 'customer@example.com',
-//   customerName: 'John Doe',
-//   companyName: 'dex Labs',
-//   acquiringCompanyName: 'Acquiring Company',
-//   // Assets are hosted on GitHub - URLs are set as defaults in the template
-//   // You can override them here if needed:
-//   // logoUrl: 'https://raw.githubusercontent.com/gustavo-beltrami/dex-labs-email/main/public/dex-logo-full-light.svg',
-//   // bannerUrl: 'https://raw.githubusercontent.com/gustavo-beltrami/dex-labs-email/main/public/General%20Banner.png',
-//   effectiveDate: 'January 1, 2025',
-//   supportEmail: 'support@dexlabs.io',
-//   actionUrl: 'https://dexlabs.io/acquisition-info',
+//   to: ['matheus.beltrami@dexlabs.io', 'isabela.ducret@dexlabs.io', 'luan.guimaraes@dexlabs.io'],
+//   customerName: 'Team',
 // });

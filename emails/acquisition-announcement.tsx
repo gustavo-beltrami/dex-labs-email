@@ -35,7 +35,7 @@ export const AcquisitionAnnouncementEmail = ({
   supportEmail = 'support@dexlabs.io',
   actionUrl = 'https://dexlabs.io',
 }: AcquisitionAnnouncementEmailProps) => {
-  const previewText = `Important update: ${companyName} has been acquired by ${acquiringCompanyName}`;
+  const previewText = 'Important update about the future of dex';
 
   return (
     <Html>
@@ -43,6 +43,10 @@ export const AcquisitionAnnouncementEmail = ({
       <Preview>{previewText}</Preview>
       <Body style={main}>
         <Container style={container}>
+          <Section style={titleSection}>
+            <Heading style={h1}>An Important Update About dex</Heading>
+          </Section>
+
           {bannerUrl && (
             <Section style={bannerSection}>
               <Img
@@ -54,89 +58,82 @@ export const AcquisitionAnnouncementEmail = ({
             </Section>
           )}
 
-          {logoUrl && (
-            <Section style={logoSection}>
-              <Img
-                src={logoUrl}
-                width="180"
-                alt={companyName}
-                style={logo}
-              />
-            </Section>
-          )}
-
           <Section style={content}>
-            <Heading style={h1}>An Important Update About {companyName}</Heading>
-
             <Text style={text}>Dear {customerName},</Text>
 
             <Text style={text}>
-              We are writing to inform you of an important development. {companyName} has
-              been acquired by {acquiringCompanyName}, effective {effectiveDate}.
-            </Text>
-
-            <Section style={highlightBox}>
-              <Text style={highlightText}>
-                <strong>What This Means for You:</strong>
-              </Text>
-            </Section>
-
-            <Text style={text}>
-              <strong>No Immediate Changes:</strong> Your services will continue uninterrupted.
-              All existing agreements, pricing, and terms remain in effect.
+              Today, we're announcing that dex has been acquired. Our team will be joining a new company to help scale data infrastructure and accelerate AI-driven experiences for millions of users.
             </Text>
 
             <Text style={text}>
-              <strong>Enhanced Services:</strong> This acquisition will enable us to provide
-              you with enhanced capabilities, improved support, and expanded services in the
-              coming months.
+              When we started dex, our mission was to make modern data engineering accessible to every company. We built dex as an all-in-one platform that combined data collection, transformation, orchestration, and monitoring in a way that eliminated complexity and empowered teams to focus on building what makes their business special.
             </Text>
 
             <Text style={text}>
-              <strong>Your Data is Secure:</strong> We remain committed to protecting your
-              data and privacy. All security measures and compliance certifications continue
-              as before.
+              Over the past years, dex has processed terabytes of data across hundreds of environments, helping teams reduce pipeline delivery time by 60-80%, eliminate platform maintenance overhead entirely, and achieve 4-8x cost savings compared to traditional approaches.
             </Text>
 
             <Hr style={divider} />
 
             <Heading as="h2" style={h2}>
-              Next Steps
+              What Will Happen to dex
             </Heading>
 
             <Text style={text}>
-              We will be reaching out over the coming weeks with more details about:
+              The dex platform will continue to operate until <strong>February 1st, 2026</strong>, giving everyone time to plan and execute their transition.
             </Text>
 
-            <ul style={list}>
-              <li style={listItem}>Platform integration timeline</li>
-              <li style={listItem}>New features and capabilities</li>
-              <li style={listItem}>Support and service updates</li>
-              <li style={listItem}>Training and onboarding resources</li>
-            </ul>
-
-            <Text style={text}>
-              In the meantime, please continue to use our services as normal. If you have
-              any questions or concerns, please don't hesitate to reach out.
-            </Text>
-
-            <Section style={buttonContainer}>
-              <Button style={button} href={actionUrl}>
-                Learn More About This Change
-              </Button>
+            <Section style={highlightBox}>
+              <Text style={highlightText}>
+                <strong>Support Timeline:</strong>
+              </Text>
+              <Text style={highlightTextBody}>
+                • <strong>Next 30 days:</strong> Full support for all platform and technical issues
+                <br />
+                • <strong>After 30 days until February 1st, 2026:</strong> Platform-related support only
+                <br />
+                • <strong>New sign-ups:</strong> Disabled starting today
+                <br />
+                • <strong>New connectors:</strong> Development suspended
+              </Text>
             </Section>
 
             <Hr style={divider} />
 
+            <Heading as="h2" style={h2}>
+              How to Transition from dex
+            </Heading>
+
             <Text style={text}>
-              We are excited about this new chapter and the opportunities it brings for
-              serving you better. Thank you for your continued trust and partnership.
+              We understand transitions take time and planning. We're committed to making this as smooth as possible for all our customers.
+            </Text>
+
+            <Text style={text}>
+              <strong>We'll send additional documentation on migration and transition soon</strong> to help you plan your next steps. Our team will also be reaching out to each customer individually over the coming weeks to discuss your specific needs and help plan your migration path.
+            </Text>
+
+            <Hr style={divider} />
+
+            <Heading as="h2" style={h2}>
+              Thank You
+            </Heading>
+
+            <Text style={text}>
+              To every team and data engineer who trusted dex: thank you.
+            </Text>
+
+            <Text style={text}>
+              Building alongside you has been the greatest part of this journey. Watching you scale your companies, build incredible data products, and empower your teams with insights that drive real business impact—these stories have been our greatest reward.
+            </Text>
+
+            <Text style={text}>
+              We're incredibly proud of what we built together.
             </Text>
 
             <Text style={signature}>
-              Sincerely,
+              Gustavo Beltrami
               <br />
-              The {companyName} Team
+              Founder & CEO
             </Text>
           </Section>
 
@@ -148,7 +145,7 @@ export const AcquisitionAnnouncementEmail = ({
               </Link>
             </Text>
             <Text style={footerText}>
-              © {new Date().getFullYear()} {companyName}. All rights reserved.
+              © {new Date().getFullYear()} dex Labs. All rights reserved.
             </Text>
           </Section>
         </Container>
@@ -174,6 +171,11 @@ const container = {
   maxWidth: '600px',
 };
 
+const titleSection = {
+  padding: '32px 20px 24px',
+  textAlign: 'center' as const,
+};
+
 const bannerSection = {
   padding: '0',
   margin: '0',
@@ -186,6 +188,7 @@ const banner = {
   height: 'auto',
   display: 'block',
   margin: '0',
+  borderRadius: '12px',
 };
 
 const logoSection = {
@@ -200,7 +203,7 @@ const logo = {
 };
 
 const content = {
-  padding: '0 48px',
+  padding: '24px 20px 0',
 };
 
 const h1 = {
@@ -208,7 +211,7 @@ const h1 = {
   fontSize: '28px',
   fontWeight: '700',
   lineHeight: '1.3',
-  margin: '16px 0 24px',
+  margin: '0',
   fontFamily: 'Inter, sans-serif',
 };
 
@@ -241,6 +244,14 @@ const highlightText = {
   color: '#1e1e24',
   fontSize: '16px',
   lineHeight: '1.6',
+  margin: '0 0 12px 0',
+  fontFamily: 'Inter, sans-serif',
+};
+
+const highlightTextBody = {
+  color: '#3a3a42',
+  fontSize: '16px',
+  lineHeight: '1.8',
   margin: '0',
   fontFamily: 'Inter, sans-serif',
 };
@@ -293,7 +304,7 @@ const signature = {
 };
 
 const footer = {
-  padding: '0 48px',
+  padding: '0 20px',
   marginTop: '32px',
   paddingBottom: '32px',
 };
