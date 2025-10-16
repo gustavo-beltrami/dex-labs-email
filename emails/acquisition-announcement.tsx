@@ -379,8 +379,7 @@ const profileImageSection = {
   maxHeight: '48px',
   maxWidth: '48px',
   textAlign: 'left' as const,
-  marginTop: '5px',
-  verticalAlign: 'top' as const,
+  verticalAlign: 'middle' as const,
 };
 
 const profileImage = {
@@ -397,7 +396,7 @@ const profileInfoSection = {
   display: 'inline-block',
   maxWidth: '120px',
   textAlign: 'left' as const,
-  verticalAlign: 'top' as const,
+  verticalAlign: 'middle' as const,
 };
 
 const profileName = {
