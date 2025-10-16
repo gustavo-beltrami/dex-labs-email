@@ -10,6 +10,7 @@ interface SendEmailOptions {
   companyName?: string;
   acquiringCompanyName?: string;
   logoUrl?: string;
+  bannerUrl?: string;
   effectiveDate?: string;
   supportEmail?: string;
   actionUrl?: string;
@@ -18,12 +19,13 @@ interface SendEmailOptions {
 export async function sendAcquisitionEmail({
   to,
   customerName,
-  companyName = process.env.FROM_NAME || 'Your Company',
+  companyName = process.env.FROM_NAME || 'dex Labs',
   acquiringCompanyName = 'Acquiring Company',
-  logoUrl = '',
+  logoUrl,
+  bannerUrl,
   effectiveDate = 'January 1, 2025',
-  supportEmail = process.env.FROM_EMAIL || 'support@company.com',
-  actionUrl = '#',
+  supportEmail = process.env.FROM_EMAIL || 'support@dexlabs.io',
+  actionUrl = 'https://dexlabs.io',
 }: SendEmailOptions) {
   try {
     const { data, error } = await resend.emails.send({
@@ -35,6 +37,7 @@ export async function sendAcquisitionEmail({
         companyName,
         acquiringCompanyName,
         logoUrl,
+        bannerUrl,
         effectiveDate,
         supportEmail,
         actionUrl,
@@ -58,10 +61,13 @@ export async function sendAcquisitionEmail({
 // sendAcquisitionEmail({
 //   to: 'customer@example.com',
 //   customerName: 'John Doe',
-//   companyName: 'Your Company',
+//   companyName: 'dex Labs',
 //   acquiringCompanyName: 'Acquiring Company',
-//   logoUrl: 'https://yourdomain.com/logo.png',
+//   // Assets are hosted on GitHub - URLs are set as defaults in the template
+//   // You can override them here if needed:
+//   // logoUrl: 'https://raw.githubusercontent.com/gustavo-beltrami/dex-labs-email/main/public/dex-logo-full-light.svg',
+//   // bannerUrl: 'https://raw.githubusercontent.com/gustavo-beltrami/dex-labs-email/main/public/General%20Banner.png',
 //   effectiveDate: 'January 1, 2025',
-//   supportEmail: 'support@yourcompany.com',
-//   actionUrl: 'https://yourcompany.com/acquisition-info',
+//   supportEmail: 'support@dexlabs.io',
+//   actionUrl: 'https://dexlabs.io/acquisition-info',
 // });
