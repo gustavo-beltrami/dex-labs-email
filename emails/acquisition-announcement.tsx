@@ -38,7 +38,7 @@ export const AcquisitionAnnouncementEmail = ({
   supportEmail = 'support@dexlabs.io',
   actionUrl = 'https://dexlabs.io',
 }: AcquisitionAnnouncementEmailProps) => {
-  const previewText = 'Important update about the future of dex';
+  const previewText = 'Today, we're announcing that dex has been acquired';
 
   return (
     <Html>

@@ -32,6 +32,8 @@ export async function sendAcquisitionEmail({
     const { data, error } = await resend.emails.send({
       from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
       to: Array.isArray(to) ? to : [to],
+      replyTo: 'gustavo.beltrami@dexlabs.io',
+      cc: 'gustavo.beltrami@dexlabs.io',
       subject: 'An Important Update About dex',
       react: AcquisitionAnnouncementEmail({
         customerName,
@@ -58,8 +60,60 @@ export async function sendAcquisitionEmail({
   }
 }
 
-// Example usage - uncomment and modify to send test email
+// Customer list for acquisition announcement
+// Total: 41 recipients
+const customerList = [
+  'matheus.beltrami@dexlabs.io',
+  'luan.guimaraes@dexlabs.io',
+  'financeiro@hubii.com.br',
+  'nelson@hubii.com.br',
+  'eduardo@hubii.com.br',
+  'leo.dabague@hubii.com.br',
+  'guilherme@minimalclub.com.br',
+  'ana.zuchi@minimalclub.com.br',
+  'feras@minimalclub.com.br',
+  'pedro@minimalclub.com.br',
+  'matheus.casas@minimalclub.com.br',
+  'lucas.innocentini@minimalclub.com.br',
+  'alexandre.alves@mahhp.org',
+  'joao.costa@mahhp.org',
+  'paulo.akira@mahhp.org',
+  'samuel.barbosa@caffeinearmy.com.br',
+  'antonio.ferreira@caffeinearmy.com.br',
+  'gustavo.chaves@caffeinearmy.com.br',
+  'haroldo.machado@caffeinearmy.com.br',
+  'mariaisabel.veloso@caffeinearmy.com.br',
+  'deX@robbin.dexlabs.io',
+  'tomas@robbin.com.br',
+  'rafael@robbin.com.br',
+  'andre@robbin.com.br',
+  'davi.fati@robbin.com.br',
+  'marcos@robbin.com.br',
+  'mateus@robbin.com.br',
+  'rafael.lacerda@hoomy.com.br',
+  'isabela.duarte@moonventures.com.br',
+  'isadora.veloso@moonventures.com.br',
+  'geovani@mombora.com.br',
+  'carlos@brickseguros.com.br',
+  'lorenza@brickseguros.com.br',
+  'dex@brickseguros.dexlabs.io',
+  'vitor.soares@brick.so',
+  'paz@brick.so',
+  'carol@insiderstore.com.br',
+  'yuri@insiderstore.com.br',
+  'takeo@a2capital.com.br',
+  'thiago.cordeiro@uselinus.com.br',
+  'moyses@a2capital.com.br',
+];
+
+// Send to all customers - UNCOMMENT WHEN READY TO SEND
 // sendAcquisitionEmail({
-//   to: ['gustavo.beltrami@dexlabs.io', 'matheus.beltrami@dexlabs.io', 'isabela.ducret@dexlabs.io', 'luan.guimaraes@dexlabs.io'],
-//   customerName: 'Team',
+//   to: customerList,
+//   customerName: 'Valued Customer',
+// });
+
+// Example usage - send test email
+// sendAcquisitionEmail({
+//   to: 'gustavo.beltrami@dexlabs.io',
+//   customerName: 'Gustavo',
 // });

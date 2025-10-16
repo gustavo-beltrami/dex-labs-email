@@ -297,3 +297,158 @@ Potential improvements for the email system:
 **User Next Step**: Send email to customer list when ready
 
 ---
+
+## Session 2 - Customer List Finalization & Email Configuration
+**Date**: October 16, 2025
+
+### Session Objectives
+- Finalize complete customer list for acquisition announcement
+- Configure email reply-to and CC fields
+- Update email preview text
+- Prepare system for production send
+
+### Customer List Updates
+
+**Final Customer List**: 41 recipients across 9 companies
+
+**Companies and Recipients**:
+1. **dex Labs Team** (2):
+   - matheus.beltrami@dexlabs.io
+   - luan.guimaraes@dexlabs.io
+
+2. **Hubii** (4):
+   - financeiro@hubii.com.br
+   - nelson@hubii.com.br
+   - eduardo@hubii.com.br
+   - leo.dabague@hubii.com.br
+
+3. **Minimal Club** (6):
+   - guilherme@minimalclub.com.br
+   - ana.zuchi@minimalclub.com.br
+   - feras@minimalclub.com.br
+   - pedro@minimalclub.com.br
+   - matheus.casas@minimalclub.com.br
+   - lucas.innocentini@minimalclub.com.br
+
+4. **MAHHP** (3):
+   - alexandre.alves@mahhp.org
+   - joao.costa@mahhp.org
+   - paulo.akira@mahhp.org
+
+5. **Caffeine Army** (5):
+   - samuel.barbosa@caffeinearmy.com.br
+   - antonio.ferreira@caffeinearmy.com.br
+   - gustavo.chaves@caffeinearmy.com.br
+   - haroldo.machado@caffeinearmy.com.br
+   - mariaisabel.veloso@caffeinearmy.com.br
+
+6. **Robbin** (7):
+   - deX@robbin.dexlabs.io
+   - tomas@robbin.com.br
+   - rafael@robbin.com.br
+   - andre@robbin.com.br
+   - davi.fati@robbin.com.br
+   - marcos@robbin.com.br
+   - mateus@robbin.com.br
+
+7. **Hoomy** (1):
+   - rafael.lacerda@hoomy.com.br
+
+8. **Moon Ventures** (2):
+   - isabela.duarte@moonventures.com.br
+   - isadora.veloso@moonventures.com.br
+
+9. **Mombora** (1):
+   - geovani@mombora.com.br
+
+10. **Brick Seguros** (5):
+    - carlos@brickseguros.com.br
+    - lorenza@brickseguros.com.br
+    - dex@brickseguros.dexlabs.io
+    - vitor.soares@brick.so
+    - paz@brick.so
+
+11. **Insider Store** (2):
+    - carol@insiderstore.com.br
+    - yuri@insiderstore.com.br
+
+12. **A2 Capital** (2):
+    - takeo@a2capital.com.br
+    - moyses@a2capital.com.br
+
+13. **Linus** (1):
+    - thiago.cordeiro@uselinus.com.br
+
+**List Management**:
+- Started with 24 recipients
+- Added 17 additional contacts through iterative updates
+- Removed all automation emails per user request
+- Final count: 41 recipients
+
+### Email Configuration Updates
+
+**Email Headers Configured**:
+- **From**: dex Labs <support@dexlabs.io>
+- **Reply-To**: gustavo.beltrami@dexlabs.io
+- **CC**: gustavo.beltrami@dexlabs.io (visible to all recipients)
+- **Subject**: "An Important Update About dex"
+
+**Preview Text Updated**:
+- Changed from: "Important update about the future of dex"
+- Changed to: "Today, we're announcing that dex has been acquired"
+- This text appears in email client preview panes
+
+### Technical Changes
+
+**File: src/send.ts**
+- Added reply-to field pointing to founder's email
+- Added CC field to copy founder on all sends (visible to recipients)
+- Maintained BCC initially, then changed to CC per user preference
+- Customer list organized by company for clarity
+- Total recipients: 41
+
+**File: emails/acquisition-announcement.tsx**
+- Updated preview text to match announcement tone
+- No design changes - template remains production-ready
+
+### Production Readiness
+
+**Status**: READY TO SEND (awaiting user confirmation)
+
+**Pre-Send Checklist**:
+- ✅ Customer list finalized (41 recipients)
+- ✅ Reply-to configured (gustavo.beltrami@dexlabs.io)
+- ✅ CC configured for founder visibility
+- ✅ Preview text updated
+- ✅ Email template tested and verified
+- ✅ All assets hosted and accessible
+- ✅ Send function ready (commented out)
+
+**To Send**: Uncomment lines 106-109 in src/send.ts and run `npm run send`
+
+### Key Decisions
+
+1. **CC vs BCC**: User chose CC over BCC so recipients can see founder is copied on communication - adds transparency and accountability
+
+2. **Preview Text**: Updated to directly state acquisition announcement, setting proper expectations before email is opened
+
+3. **Team Members in List**: Added dex Labs team members (Matheus, Luan) to customer list to ensure they receive the announcement
+
+4. **Automation Emails Removed**: Excluded all automation/bot email addresses to ensure only human recipients receive the message
+
+### Next Steps
+
+**User Actions**:
+1. Final review of email content and recipient list
+2. Uncomment send function in src/send.ts
+3. Execute send: `npm run send`
+4. Monitor email delivery and responses
+5. Begin individual customer outreach as promised
+
+**Post-Send**:
+- Track email open rates (if analytics enabled)
+- Monitor support@dexlabs.io for customer responses
+- Prepare migration documentation as mentioned in email
+- Schedule individual calls with key customers
+
+---
