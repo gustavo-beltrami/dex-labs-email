@@ -9,6 +9,7 @@ import {
   Img,
   Link,
   Preview,
+  Row,
   Section,
   Text,
 } from '@react-email/components';
@@ -20,6 +21,7 @@ interface AcquisitionAnnouncementEmailProps {
   acquiringCompanyName?: string;
   logoUrl?: string;
   bannerUrl?: string;
+  profilePhotoUrl?: string;
   effectiveDate?: string;
   supportEmail?: string;
   actionUrl?: string;
@@ -31,6 +33,7 @@ export const AcquisitionAnnouncementEmail = ({
   acquiringCompanyName = 'Acquiring Company',
   logoUrl = 'https://raw.githubusercontent.com/gustavo-beltrami/dex-labs-email/main/public/dex-logo-full-light.svg',
   bannerUrl = 'https://raw.githubusercontent.com/gustavo-beltrami/dex-labs-email/main/public/General%20Banner.png',
+  profilePhotoUrl = 'https://raw.githubusercontent.com/gustavo-beltrami/dex-labs-email/main/public/gustavo_beltrami_profile_pic.jpg',
   effectiveDate = 'January 1, 2025',
   supportEmail = 'support@dexlabs.io',
   actionUrl = 'https://dexlabs.io',
@@ -43,20 +46,27 @@ export const AcquisitionAnnouncementEmail = ({
       <Preview>{previewText}</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Section style={titleSection}>
-            <Heading style={h1}>An Important Update About dex</Heading>
-          </Section>
-
-          {bannerUrl && (
-            <Section style={bannerSection}>
+          <Section style={heroSection}>
+            {bannerUrl && (
               <Img
                 src={bannerUrl}
                 width="600"
                 alt="dex Labs"
                 style={banner}
               />
+            )}
+            <Section style={heroTextSection}>
+              <Text style={categoryText}>
+                Announcement
+              </Text>
+              <Heading
+                as="h1"
+                style={heroHeading}
+              >
+                An Important Update About dex
+              </Heading>
             </Section>
-          )}
+          </Section>
 
           <Section style={content}>
             <Text style={text}>Dear {customerName},</Text>
@@ -130,11 +140,29 @@ export const AcquisitionAnnouncementEmail = ({
               We're incredibly proud of what we built together.
             </Text>
 
-            <Text style={signature}>
-              Gustavo Beltrami
-              <br />
-              Founder & CEO
-            </Text>
+            <Row>
+              <Hr style={profileDivider} />
+              <Section style={profileImageSection}>
+                <Img
+                  alt="Gustavo Beltrami"
+                  style={profileImage}
+                  height={48}
+                  src={profilePhotoUrl}
+                  width={48}
+                />
+              </Section>
+              <Section style={profileInfoSection}>
+                <Heading
+                  as="h3"
+                  style={profileName}
+                >
+                  Gustavo Beltrami
+                </Heading>
+                <Text style={profileTitle}>
+                  Founder & CEO
+                </Text>
+              </Section>
+            </Row>
           </Section>
 
           <Section style={footer}>
@@ -171,15 +199,8 @@ const container = {
   maxWidth: '600px',
 };
 
-const titleSection = {
-  padding: '32px 20px 24px',
-  textAlign: 'center' as const,
-};
-
-const bannerSection = {
-  padding: '0',
-  margin: '0',
-  width: '100%',
+const heroSection = {
+  margin: '16px 0',
 };
 
 const banner = {
@@ -189,6 +210,31 @@ const banner = {
   display: 'block',
   margin: '0',
   borderRadius: '12px',
+  objectFit: 'cover' as const,
+};
+
+const heroTextSection = {
+  marginTop: '32px',
+  textAlign: 'center' as const,
+  padding: '0 20px',
+};
+
+const categoryText = {
+  margin: '16px 0',
+  fontWeight: '600',
+  fontSize: '18px',
+  color: '#4338ca', // dex Labs brand color
+  lineHeight: '28px',
+  fontFamily: 'Inter, sans-serif',
+};
+
+const heroHeading = {
+  margin: '8px 0 0 0',
+  fontWeight: '600',
+  fontSize: '36px',
+  color: '#1e1e24',
+  lineHeight: '36px',
+  fontFamily: 'Inter, sans-serif',
 };
 
 const logoSection = {
@@ -321,4 +367,53 @@ const footerText = {
 const footerLink = {
   color: '#4338ca', // dex Labs brand color
   textDecoration: 'underline',
+};
+
+const profileDivider = {
+  borderColor: '#e5e7eb',
+  margin: '16px 0',
+};
+
+const profileImageSection = {
+  display: 'inline-block',
+  maxHeight: '48px',
+  maxWidth: '48px',
+  textAlign: 'left' as const,
+  marginTop: '5px',
+  verticalAlign: 'top' as const,
+};
+
+const profileImage = {
+  display: 'block',
+  height: '48px',
+  width: '48px',
+  borderRadius: '50%',
+  objectFit: 'cover' as const,
+  objectPosition: 'center' as const,
+};
+
+const profileInfoSection = {
+  marginLeft: '18px',
+  display: 'inline-block',
+  maxWidth: '120px',
+  textAlign: 'left' as const,
+  verticalAlign: 'top' as const,
+};
+
+const profileName = {
+  margin: '0px',
+  fontWeight: '500',
+  fontSize: '14px',
+  color: '#1e1e24',
+  lineHeight: '20px',
+  fontFamily: 'Inter, sans-serif',
+};
+
+const profileTitle = {
+  margin: '0px',
+  fontWeight: '500',
+  fontSize: '12px',
+  color: '#6b7280',
+  lineHeight: '14px',
+  fontFamily: 'Inter, sans-serif',
 };

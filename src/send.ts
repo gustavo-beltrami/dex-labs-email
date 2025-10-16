@@ -60,6 +60,6 @@ export async function sendAcquisitionEmail({
 
 // Example usage - uncomment and modify to send test email
 // sendAcquisitionEmail({
-//   to: ['matheus.beltrami@dexlabs.io', 'isabela.ducret@dexlabs.io', 'luan.guimaraes@dexlabs.io'],
+//   to: ['gustavo.beltrami@dexlabs.io', 'matheus.beltrami@dexlabs.io', 'isabela.ducret@dexlabs.io', 'luan.guimaraes@dexlabs.io'],
 //   customerName: 'Team',
 // });
