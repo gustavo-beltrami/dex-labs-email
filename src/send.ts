@@ -107,10 +107,41 @@ const customerList = [
 ];
 
 // Send to all customers - UNCOMMENT WHEN READY TO SEND
-// sendAcquisitionEmail({
-//   to: customerList,
-//   customerName: 'Valued Customer',
-// });
+// Loop through each customer and send individual emails
+async function sendToAllCustomers() {
+  const results = [];
+
+  for (const email of customerList) {
+    console.log(`Sending to: ${email}`);
+    const result = await sendAcquisitionEmail({
+      to: email,
+      customerName: 'Valued Customer',
+    });
+    results.push({ email, ...result });
+
+    // Small delay between sends to avoid rate limiting
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
+  // Summary
+  const successful = results.filter(r => r.success).length;
+  const failed = results.filter(r => !r.success).length;
+
+  console.log('\n=== Send Summary ===');
+  console.log(`Total: ${results.length}`);
+  console.log(`Successful: ${successful}`);
+  console.log(`Failed: ${failed}`);
+
+  if (failed > 0) {
+    console.log('\nFailed emails:');
+    results.filter(r => !r.success).forEach(r => {
+      console.log(`- ${r.email}: ${r.error}`);
+    });
+  }
+}
+
+// Uncomment to send
+// sendToAllCustomers();
 
 // Example usage - send test email
 // sendAcquisitionEmail({
