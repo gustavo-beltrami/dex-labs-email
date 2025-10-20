@@ -452,3 +452,251 @@ Potential improvements for the email system:
 - Schedule individual calls with key customers
 
 ---
+
+## Session 3 - Migration Documentation Email Campaign
+**Date**: October 20, 2025
+
+### Session Objectives
+- Create migration documentation follow-up email template
+- Send migration emails to all 41 customers individually
+- Provide customers with comprehensive migration resources
+- Address rate limiting issues during bulk send
+
+### Migration Email Template
+
+**Template Name**: `dex-migration-documentation.tsx`
+**Location**: `/Users/G.Beltrami/Documents/Projects/9.react-email/emails/dex-migration-documentation.tsx`
+
+**Purpose**: Follow-up email to acquisition announcement providing customers with detailed migration documentation and support resources.
+
+**Content Structure**:
+1. **Header Section**: dex Labs logo
+2. **Greeting**: Personalized with customer name
+3. **Introduction**: Reference to previous acquisition announcement
+4. **Migration Documentation Link**: https://docs.dexlabs.io/migration/migrating-from-dex
+5. **Timeline Reminder**:
+   - November 15th: Current support ends
+   - February 1st, 2026: Platform shutdown date
+6. **Support Channels**:
+   - Email: support@dexlabs.io
+   - In-platform support widget
+   - Slack/WhatsApp for existing customers
+7. **Closing**: Appreciation and support commitment
+
+### Email Sending Campaign
+
+**Script**: `/Users/G.Beltrami/Documents/Projects/9.react-email/src/send-migration.ts`
+
+**Initial Send Results**:
+- Attempted to send to all 41 customers
+- First batch: 28 emails sent successfully
+- Rate limiting triggered after 28 sends
+- Remaining 13 emails failed due to Resend API rate limit
+
+**Rate Limiting Issue Discovered**:
+- **Problem**: Resend API limits to 2 requests per second
+- **Initial delay**: 100ms between sends (too fast - allowed 10 per second)
+- **Symptom**: Error 429 (Too Many Requests) after ~28 emails
+- **Root cause**: 100ms delay exceeded Resend's 2 requests/second limit
+
+**Solution Implemented**:
+- Increased delay from 100ms to 500ms
+- 500ms delay = 2 requests per second maximum
+- Aligns with Resend API rate limit specifications
+- Added comment explaining rate limiting consideration
+
+**Resend Results**:
+- Successfully sent remaining 13 emails
+- Total campaign: 41/41 emails delivered
+- No further rate limiting issues
+
+**Final Campaign Summary**:
+- **Total Recipients**: 41 customers
+- **Successful Sends**: 41/41 (100%)
+- **First Attempt**: 28 emails
+- **Second Attempt**: 13 emails (after rate limit fix)
+- **Failed**: 0
+
+### Email Configuration
+
+**Headers** (same as acquisition email):
+- **From**: dex Labs <support@dexlabs.io>
+- **Reply-To**: gustavo.beltrami@dexlabs.io
+- **CC**: gustavo.beltrami@dexlabs.io (visible to all recipients)
+- **Subject**: "Migration Documentation for Your dex Workspace"
+
+**Preview Text**: "We've prepared comprehensive migration guides to help you transition"
+
+### Content Improvements Made During Session
+
+1. **Specific Dates Added**:
+   - Changed vague "in the coming weeks" to specific date: November 15th
+   - Explicitly stated platform shutdown: February 1st, 2026
+   - Provides clear timeline for customer planning
+
+2. **Support Channels Expanded**:
+   - Added email: support@dexlabs.io
+   - Mentioned in-platform support widget
+   - Noted Slack/WhatsApp availability for existing customers
+   - Removed redundant "We're Here to Help" section that duplicated support info
+
+3. **Formatting Refinements**:
+   - Removed extra spacing between bullet points
+   - Cleaner, more professional appearance
+   - Better visual hierarchy
+
+4. **Migration Documentation Link**:
+   - Primary CTA: https://docs.dexlabs.io/migration/migrating-from-dex
+   - Comprehensive guide covering all migration scenarios
+   - Hosted on docs.dexlabs.io for easy access and updates
+
+### Technical Implementation Details
+
+**Individual Email Sending**:
+```typescript
+// Sends to each customer individually (not bulk)
+for (const customer of customers) {
+  await sendMigrationEmail({
+    to: customer.email,
+    customerName: customer.name,
+  });
+
+  // Rate limiting delay: 500ms = 2 requests/second max
+  await new Promise(resolve => setTimeout(resolve, 500));
+}
+```
+
+**Why Individual Sends vs. Bulk**:
+- Personalization with customer names
+- Better deliverability (not flagged as bulk mail)
+- Individual tracking per recipient
+- Professional appearance in inbox
+
+### Key Decisions & Rationale
+
+1. **Rate Limiting Strategy**:
+   - **Decision**: 500ms delay between sends
+   - **Why**: Resend API limits to 2 requests/second; 500ms ensures compliance
+   - **Alternative considered**: Bulk send (rejected due to personalization needs)
+
+2. **Specific Dates in Email**:
+   - **Decision**: Include November 15th and February 1st, 2026 explicitly
+   - **Why**: Removes ambiguity, helps customers plan migrations
+   - **Previous**: Vague "coming weeks" language
+
+3. **Support Channels Section**:
+   - **Decision**: Consolidated all support options into one clear list
+   - **Why**: Reduces redundancy, makes email more scannable
+   - **Removed**: Separate "We're Here to Help" section that duplicated info
+
+4. **Email Configuration Consistency**:
+   - **Decision**: Use same reply-to/CC as acquisition email
+   - **Why**: Maintains consistency, keeps founder in loop on responses
+   - **Benefit**: Centralized communication thread for customer questions
+
+### Production Results
+
+**Status**: CAMPAIGN COMPLETED SUCCESSFULLY
+
+**All Customers Notified**:
+- All 41 emails delivered
+- All customers have migration documentation link
+- Support channels clearly communicated
+- Timeline expectations set (November 15th, February 1st 2026)
+
+**Email Delivery Stats**:
+- Total recipients: 41
+- Success rate: 100%
+- Rate limit errors: 0 (after fix)
+- Send duration: ~20.5 seconds (41 emails × 500ms delay)
+
+### Current State
+
+**Completed This Session**:
+- Migration email template created
+- Rate limiting issue identified and fixed
+- All 41 customers received migration documentation
+- Email content refined with specific dates
+- Support channels clearly communicated
+- Code committed and pushed to repository
+
+**Customer Communication Status**:
+1. **Acquisition Announcement**: Sent (Session 2)
+2. **Migration Documentation**: Sent (Session 3)
+3. **Next**: Individual customer support as needed
+
+**Documentation Available to Customers**:
+- Migration guide: https://docs.dexlabs.io/migration/migrating-from-dex
+- Support email: support@dexlabs.io
+- In-platform support widget
+- Slack/WhatsApp for existing customers
+
+### Project Structure Updates
+
+```
+/Users/G.Beltrami/Documents/Projects/9.react-email/
+├── emails/
+│   ├── acquisition-announcement.tsx         # Session 1 (production-ready)
+│   └── dex-migration-documentation.tsx      # Session 3 (NEW - campaign completed)
+├── src/
+│   ├── send-acquisition-email.ts           # Session 1 sending script
+│   └── send-migration.ts                   # Session 3 sending script (NEW)
+├── public/
+│   ├── dex-logo-full-light.svg
+│   ├── General Banner.png
+│   └── gustavo_beltrami_profile_pic.jpg
+├── .env
+├── .env.example
+├── ASSET_HOSTING.md
+├── README.md
+├── PROJECT_DIARY.md                        # Updated this session
+├── package.json
+└── tsconfig.json
+```
+
+### Lessons Learned
+
+**Rate Limiting**:
+- Always check API provider rate limits before bulk operations
+- 100ms delay is too aggressive for most email APIs
+- Resend specifically limits to 2 requests/second
+- Better to be conservative with delays (500ms) than risk failures mid-campaign
+
+**Email Campaign Management**:
+- Individual sends provide better personalization
+- Track success/failure per recipient for troubleshooting
+- Test with small batch first to identify issues
+- Have resend capability for failed emails
+
+**Content Clarity**:
+- Specific dates > vague timeframes ("November 15th" vs "coming weeks")
+- Consolidate redundant information
+- Multiple support channels increase customer confidence
+- Clear CTAs (migration documentation link)
+
+### Notes for Future Sessions
+
+**Customer Support Expectations**:
+- Customers now have migration documentation
+- Support team should monitor support@dexlabs.io for migration questions
+- Founder CC'd on all email responses (gustavo.beltrami@dexlabs.io)
+- Slack/WhatsApp available for existing customer urgent requests
+
+**Timeline to Remember**:
+- **November 15th**: Current support level ends
+- **February 1st, 2026**: Platform shutdown date
+- Time window for customer migrations: ~3.5 months from today
+
+**Resend API Rate Limits**:
+- Maximum: 2 requests per second
+- Recommended delay: 500ms between sends
+- Monitor for 429 errors in bulk operations
+
+**Email Template Pattern Established**:
+- Personalized greetings with customer names
+- Clear documentation/resource links
+- Specific dates and timelines
+- Multiple support channel options
+- Professional, concise formatting
+
+---
