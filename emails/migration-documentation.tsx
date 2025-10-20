@@ -88,9 +88,9 @@ export const MigrationDocumentationEmail = ({
             <Section style={highlightBox}>
               <Text style={highlightTextBody}>
                 • <strong>Full Support until November 15th:</strong> Our team is available for all platform and technical issues, migration questions, and implementation guidance
-                <br /><br />
+                <br />
                 • <strong>November 16th - February 1st, 2026:</strong> Platform remains operational with platform-related support only
-                <br /><br />
+                <br />
                 • <strong>February 1st, 2026:</strong> Platform shutdown
               </Text>
             </Section>
@@ -112,9 +112,9 @@ export const MigrationDocumentationEmail = ({
             <Section style={highlightBox}>
               <Text style={highlightTextBody}>
                 • <strong>Email:</strong> {supportEmail}
-                <br /><br />
+                <br />
                 • <strong>In-Platform Support Widget:</strong> Available directly in your dex dashboard
-                <br /><br />
+                <br />
                 • <strong>Dedicated Support Channels:</strong> Slack and WhatsApp (if you have access)
               </Text>
             </Section>
