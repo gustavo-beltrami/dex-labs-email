@@ -67,7 +67,7 @@ export const MigrationDocumentationEmail = ({
             </Text>
 
             <Text style={text}>
-              This guide has been prepared with your transition in mind, covering everything from understanding your current setup to choosing and implementing your next data platform.
+              This guide covers everything from understanding your current setup to choosing and implementing your next data platform, with step-by-step instructions and best practices for a smooth transition.
             </Text>
 
             <Section style={buttonContainer}>
@@ -82,71 +82,59 @@ export const MigrationDocumentationEmail = ({
             <Hr style={divider} />
 
             <Heading as="h2" style={h2}>
-              What's Included in the Guide
+              Support Timeline
             </Heading>
-
-            <Text style={text}>
-              The migration documentation covers:
-            </Text>
 
             <Section style={highlightBox}>
               <Text style={highlightTextBody}>
-                • <strong>Understanding Your Current Setup:</strong> How to audit your existing dex pipelines and dependencies
+                • <strong>Full Support until November 15th:</strong> Our team is available for all platform and technical issues, migration questions, and implementation guidance
                 <br /><br />
-                • <strong>Choosing Your Next Platform:</strong> Framework for evaluating alternative data platforms based on your needs
+                • <strong>November 16th - February 1st, 2026:</strong> Platform remains operational with platform-related support only
                 <br /><br />
-                • <strong>Migration Strategies:</strong> Step-by-step approaches for different migration scenarios
-                <br /><br />
-                • <strong>Timeline Planning:</strong> Recommended milestones and checkpoints for a smooth transition
-                <br /><br />
-                • <strong>Common Challenges:</strong> Known issues and how to address them during migration
-                <br /><br />
-                • <strong>Testing & Validation:</strong> Best practices for ensuring your new setup works correctly
+                • <strong>February 1st, 2026:</strong> Platform shutdown
               </Text>
             </Section>
+
+            <Text style={text}>
+              We recommend starting your migration planning as soon as possible to ensure a smooth transition before our full support period ends on November 15th.
+            </Text>
 
             <Hr style={divider} />
 
             <Heading as="h2" style={h2}>
-              We're Here to Help
+              How to Get Support
             </Heading>
 
             <Text style={text}>
-              As mentioned in our previous email, our team will be reaching out individually over the coming weeks to discuss your specific needs and answer any questions.
-            </Text>
-
-            <Text style={text}>
-              In the meantime, if you have urgent questions or need clarification on any part of the migration process, please don't hesitate to reach out.
+              Our team is here to help you through every step of your migration. You can reach us through any of the following channels:
             </Text>
 
             <Section style={highlightBox}>
-              <Text style={highlightText}>
-                <strong>Support Timeline Reminder:</strong>
-              </Text>
               <Text style={highlightTextBody}>
-                • <strong>Full Support:</strong> Available for the next 30 days for all platform and technical issues
-                <br />
-                • <strong>Platform Support:</strong> After 30 days until February 1st, 2026
-                <br />
-                • <strong>Platform Shutdown:</strong> February 1st, 2026
+                • <strong>Email:</strong> {supportEmail}
+                <br /><br />
+                • <strong>In-Platform Support Widget:</strong> Available directly in your dex dashboard
+                <br /><br />
+                • <strong>Dedicated Support Channels:</strong> Slack and WhatsApp (if you have access)
               </Text>
             </Section>
+
+            <Text style={text}>
+              As mentioned in our previous email, our team will also be reaching out individually over the coming weeks to discuss your specific needs and answer any questions about your migration path.
+            </Text>
 
             <Hr style={divider} />
 
             <Heading as="h2" style={h2}>
-              Questions?
+              Next Steps
             </Heading>
 
             <Text style={text}>
-              We understand that every migration is unique, and you may have specific questions about your setup. We're committed to making this transition as smooth as possible.
+              We recommend reviewing the migration documentation as soon as possible to understand the scope of work and begin planning your transition timeline.
             </Text>
 
             <Text style={text}>
-              Feel free to reply to this email or reach out directly at{' '}
-              <Link href={`mailto:${supportEmail}`} style={link}>
-                {supportEmail}
-              </Link>
+              Every migration is unique, and we're committed to making this transition as smooth as possible. Don't hesitate to reach out with questions—no question is too small.
             </Text>
 
             <Text style={text}>
