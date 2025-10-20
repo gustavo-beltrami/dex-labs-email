@@ -110,8 +110,8 @@ async function sendToAllCustomers() {
     });
     results.push({ email, ...result });
 
-    // Small delay between sends to avoid rate limiting
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Small delay between sends to avoid rate limiting (500ms = 2 per second max)
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
 
   // Summary
@@ -134,8 +134,22 @@ async function sendToAllCustomers() {
 // Uncomment to send
 // sendToAllCustomers();
 
+
 // Example usage - send test email
-// sendMigrationEmail({
-//   to: 'gustavo.beltrami@dexlabs.io',
-//   customerName: 'Gustavo',
-// });
+// async function sendTestEmails() {
+//   console.log('Sending test emails...\n');
+
+//   await sendMigrationEmail({
+//     to: 'gustavo.beltrami@dexlabs.io',
+//     customerName: 'Gustavo',
+//   });
+
+//   await sendMigrationEmail({
+//     to: 'isabela.ducret@dexlabs.io',
+//     customerName: 'Isabela',
+//   });
+
+//   console.log('\nTest emails sent!');
+// }
+
+// sendTestEmails();
