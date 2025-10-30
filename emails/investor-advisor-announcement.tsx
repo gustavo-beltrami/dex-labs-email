@@ -95,9 +95,9 @@ export const InvestorAdvisorAnnouncementEmail = ({
               <Text style={highlightTextBody}>
                 • <strong>{shutdownDate}:</strong> Full product and service support ends
                 <br />
-                • <strong>February 1st, 2026:</strong> Platform shutdown (remains accessible for customer transitions)
+                • <strong>February 1st, 2026:</strong> Platform shutdown
                 <br />
-                • <strong>Team Transition:</strong> Core team members joining Nubank immediately following close
+                • <strong>Team Transition:</strong> Core team members joining Nubank on December 2025
               </Text>
             </Section>
 
