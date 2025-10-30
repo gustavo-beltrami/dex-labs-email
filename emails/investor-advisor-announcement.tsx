@@ -236,6 +236,7 @@ const confidentialityText = {
 
 const heroSection = {
   margin: '0',
+  marginTop: '24px',
   padding: '0',
 };
 
