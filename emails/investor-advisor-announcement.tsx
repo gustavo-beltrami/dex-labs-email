@@ -85,17 +85,17 @@ export const InvestorAdvisorAnnouncementEmail = ({
             </Heading>
 
             <Text style={text}>
-              As part of this transition, <strong>dex operations will be shut down on {shutdownDate}</strong>. This timeline allows our team to ensure a smooth handover of customer support responsibilities and orderly wind-down of the platform.
+              We will offer full support for our product and services until <strong>{shutdownDate}</strong>. After that date, the platform will remain online until <strong>February 1st, 2026</strong> to give our customers time to transition and while our credits on the major public clouds last.
             </Text>
 
             <Section style={highlightBox}>
               <Text style={highlightText}>
-                <strong>Key Date:</strong>
+                <strong>Key Dates:</strong>
               </Text>
               <Text style={highlightTextBody}>
-                • <strong>{shutdownDate}:</strong> Complete shutdown of dex platform operations
+                • <strong>{shutdownDate}:</strong> Full product and service support ends
                 <br />
-                • <strong>Customer Support:</strong> Active through shutdown date to ensure smooth customer transitions
+                • <strong>February 1st, 2026:</strong> Platform shutdown (remains accessible for customer transitions)
                 <br />
                 • <strong>Team Transition:</strong> Core team members joining Nubank immediately following close
               </Text>
